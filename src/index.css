@@ -1,15 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root { color: #f5f3ff; background: #09090d; font-family: 'DM Sans', sans-serif; font-synthesis: none; }
+:root { color: #f5f3ff; background: #071018; font-family: 'DM Sans', sans-serif; font-synthesis: none; }
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; background: #09090d; }
+body { margin: 0; min-width: 320px; background: #071018; }
+body::before { content: ''; position: fixed; inset: -22px; z-index: -3; background: linear-gradient(180deg, rgba(3,10,16,.48), rgba(3,8,13,.78)), url('/ratespace-storefront.png') center / cover; filter: blur(7px) saturate(.88); transform: scale(1.04); }
+body::after { content: ''; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(circle at 14% 18%, rgba(255,170,75,.13), transparent 28%), radial-gradient(circle at 82% 12%, rgba(93,173,255,.12), transparent 32%), linear-gradient(180deg, rgba(4,10,16,.20), rgba(4,8,13,.72)); }
+#root { min-height: 100vh; position: relative; isolation: isolate; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 .display { font-family: 'Space Grotesk', sans-serif; }
 .noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E"); }
-.glass { background: rgba(23, 22, 31, .72); border: 1px solid rgba(255,255,255,.10); box-shadow: 0 20px 60px rgba(0,0,0,.23), inset 0 1px 0 rgba(255,255,255,.04); backdrop-filter: blur(22px); }
-.glass-soft { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(18px); }
+.glass { background: rgba(15, 23, 32, .58); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 18px 52px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.glass-soft { background: rgba(18, 27, 37, .48); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 8px 32px rgba(0,0,0,.22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.glass-hero { background: linear-gradient(135deg, rgba(34, 47, 52, .64), rgba(15, 23, 32, .48)); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 24px 68px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.bg-\[\#09090d\] { background-color: rgba(5, 11, 17, .58) !important; }
+.store-art { background-image: linear-gradient(180deg, rgba(5,13,18,.03), rgba(5,10,14,.72)), url('/ratespace-storefront.png'); background-size: cover; background-position: center; transition: transform .45s ease, filter .45s ease; }
+.store-card:hover .store-art { transform: scale(1.045); filter: saturate(1.08) brightness(1.06); }
+.owner-hero { background-image: linear-gradient(90deg, rgba(7,14,20,.88) 0%, rgba(7,14,20,.63) 44%, rgba(7,14,20,.20) 100%), url('/ratespace-storefront.png'); background-size: cover; background-position: center; }
+section[class*="from-violet-500/25"] { background-image: linear-gradient(90deg, rgba(7,14,20,.88) 0%, rgba(7,14,20,.63) 44%, rgba(7,14,20,.20) 100%), url('/ratespace-storefront.png'); background-size: cover; background-position: center; }
+.glass-table { background: rgba(9, 17, 24, .48); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 18px 52px rgba(0,0,0,.28); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+@media (min-width: 1024px) { .w-\[250px\] { margin: 1rem 0 1rem 1rem; min-height: calc(100vh - 2rem); border-radius: 1.75rem; border: 1px solid rgba(255,255,255,.14); box-shadow: 0 18px 52px rgba(0,0,0,.34); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
 .gradient-text { background: linear-gradient(110deg,#fff 15%,#d0b6ff 52%,#8ce8ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { scrollbar-width: none; }

@@ -116,3 +116,9 @@ Admin dashboard, user management, store management, Store Owner dashboard, custo
 10. Open the Vite URL and use the Demo Credentials panel on the Login page to test each role.
 
 The login page uses the real login API, bcrypt-backed database accounts, JWT authentication, and role redirects. Admins land at `/admin/dashboard`, normal users at `/dashboard`, and Store Owners at `/owner/dashboard`.
+
+## Optional Phase 7 glassmorphism UI
+
+The premium glassmorphism redesign is isolated on the `phase-7-glassmorphism-ui` branch. It changes presentation only: authentication, RBAC, API routes, database behavior, and existing role workflows remain intact. The storefront artwork used by the atmospheric background is stored at `public/ratespace-storefront.png`.
+
+To return to the stable UI, switch back to `main` with `git switch main`. The Phase 7 branch can be reviewed, kept, or deleted independently after switching away from it.
