@@ -47,12 +47,12 @@ function Ambient({ compact = false }: { compact?: boolean }) { return <div class
 
 function Button({ children, variant = 'primary', className = '', onClick, to }: { children: React.ReactNode; variant?: 'primary' | 'secondary' | 'ghost'; className?: string; onClick?: () => void; to?: string }) {
   const styles = variant === 'primary' ? 'bg-white text-slate-950 hover:bg-violet-100 shadow-xl shadow-violet-500/10' : variant === 'secondary' ? 'glass-soft text-white hover:bg-white/12' : 'text-white/60 hover:bg-white/8 hover:text-white'
-  const content = <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: .98 }} className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${styles} ${className}`}>{children}</motion.span>
+  const content = <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: .98 }} className={`theme-button inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${styles} ${className}`}>{children}</motion.span>
   return to ? <Link to={to}>{content}</Link> : <button onClick={onClick}>{content}</button>
 }
 
 function ThemeToggle({ lightTheme, onToggle, className = '' }: { lightTheme: boolean; onToggle: () => void; className?: string }) {
-  return <button type="button" aria-label={lightTheme ? 'Switch to dark theme' : 'Switch to light theme'} aria-pressed={lightTheme} onClick={onToggle} className={`inline-flex items-center gap-2 rounded-xl border border-white/15 bg-black/15 px-3 py-2.5 text-xs font-semibold text-white/75 transition hover:bg-black/25 hover:text-white ${className}`}>
+  return <button type="button" aria-label={lightTheme ? 'Switch to dark theme' : 'Switch to light theme'} aria-pressed={lightTheme} onClick={onToggle} className={`theme-button inline-flex items-center gap-2 rounded-xl border border-white/15 bg-black/15 px-3 py-2.5 text-xs font-semibold text-white/75 transition hover:bg-black/25 hover:text-white ${className}`}>
     {lightTheme ? <Moon size={15} /> : <Sun size={15} />}<span>{lightTheme ? 'Dark' : 'Light'}</span>
   </button>
 }
