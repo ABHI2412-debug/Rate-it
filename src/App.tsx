@@ -57,6 +57,66 @@ function Stars({ rating, interactive = false, value, onChange }: { rating?: numb
 
 function Landing() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  return <div className="landing-shell relative min-h-screen overflow-hidden text-white">
+    <div className="relative z-10 mx-auto max-w-[1500px] px-4 py-4 sm:px-6 lg:px-8">
+      <header className="landing-header flex items-center gap-4 rounded-[26px] px-4 py-3 sm:px-6">
+        <Logo />
+        <label className="landing-search hidden min-w-0 flex-1 items-center gap-3 rounded-full px-4 py-2.5 lg:flex">
+          <Search size={16} className="shrink-0 text-white/45" />
+          <input className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35" placeholder="Search anything..." aria-label="Search anything" />
+        </label>
+        <nav className="ml-auto hidden items-center gap-6 text-sm text-white/55 md:flex">
+          <a href="#featured" className="transition hover:text-white">Featured stores</a>
+          <a href="#how" className="transition hover:text-white">How it works</a>
+          <a href="#stories" className="transition hover:text-white">Stories</a>
+        </nav>
+        <div className="hidden items-center gap-2 sm:flex">
+          <Button variant="ghost" to="/login">Log in</Button>
+          <Button to="/signup">Join RateSpace <ArrowUpRight size={15} /></Button>
+        </div>
+        <button aria-label="Open menu" className="grid h-10 w-10 place-items-center rounded-xl glass-soft md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X size={18} /> : <Menu size={18} />}</button>
+      </header>
+      {mobileOpen && <div className="mt-3 rounded-2xl glass p-4 md:hidden"><div className="mb-3 flex items-center gap-3 rounded-xl landing-search px-3 py-2.5"><Search size={15} className="text-white/45" /><input className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-white/35" placeholder="Search anything..." /></div><a href="#featured" className="block border-t border-white/10 px-2 py-3 text-sm text-white/70">Featured stores</a><a href="#how" className="block border-t border-white/10 px-2 py-3 text-sm text-white/70">How it works</a><Link to="/login" className="block border-t border-white/10 px-2 py-3 text-sm text-white/70">Log in</Link></div>}
+      <div className="mt-5 grid gap-5 lg:grid-cols-[230px_minmax(0,1fr)]">
+        <aside className="landing-sidebar hidden rounded-[28px] p-4 lg:block">
+          <p className="px-2 text-[10px] font-semibold uppercase tracking-[.2em] text-white/35">Explore RateSpace</p>
+          <nav className="mt-4 space-y-1">
+            <a href="#featured" className="flex items-center gap-3 rounded-xl bg-white/12 px-3 py-3 text-sm text-white"><Home size={16} /> Overview</a>
+            <Link to="/app/discover" className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-white/55 transition hover:bg-white/8 hover:text-white"><Compass size={16} /> Discover stores</Link>
+            <a href="#how" className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-white/55 transition hover:bg-white/8 hover:text-white"><Sparkles size={16} /> How it works</a>
+            <a href="#stories" className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-white/55 transition hover:bg-white/8 hover:text-white"><MessageCircle size={16} /> Community stories</a>
+          </nav>
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <div className="flex items-center justify-between px-2"><p className="text-xs font-semibold">New around you</p><span className="text-[10px] text-white/35">Today</span></div>
+            <div className="mt-3 space-y-3">{stores.slice(0, 2).map((store, index) => <div className="store-mini" key={store.id}><div className="store-mini-art" style={{ backgroundImage: 'linear-gradient(180deg, transparent 30%, rgba(5,10,14,.66)), url(' + String.fromCharCode(39) + '/store-card-' + (index + 1) + '.png' + String.fromCharCode(39) + ')' }} /><p className="mt-2 truncate text-xs font-semibold">{store.name}</p><div className="mt-1 flex items-center gap-1 text-[10px] text-white/45"><Star size={10} fill="currentColor" className="text-amber-300" /> {store.rating.toFixed(1)} · {store.category}</div></div>)}</div>
+          </div>
+        </aside>
+        <main className="min-w-0">
+          <section className="landing-hero grid overflow-hidden rounded-[30px] lg:grid-cols-[.82fr_1.18fr]">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200/15 bg-emerald-200/10 px-3 py-1.5 text-xs font-medium text-emerald-100"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_#86efac]" /> A better way to choose</div>
+              <p className="text-xs font-semibold uppercase tracking-[.2em] text-white/40">Welcome to your local guide</p>
+              <h1 className="display mt-4 max-w-xl text-4xl font-medium leading-[1.02] tracking-[-.06em] sm:text-5xl xl:text-6xl">Find the places<br /><span className="gradient-text">worth your time.</span></h1>
+              <p className="mt-5 max-w-md text-sm leading-6 text-white/55">Discover great stores, read honest opinions, and share the experiences that help your community choose better.</p>
+              <div className="mt-7 flex flex-wrap gap-3"><Button to="/app/discover">Explore stores <ArrowRight size={15} /></Button><Button variant="secondary" to="/signup">Create account</Button></div>
+              <div className="mt-8 flex items-center gap-3 text-xs text-white/45"><div className="flex -space-x-2">{['#f0abfc', '#93c5fd', '#fcd34d', '#86efac'].map((color, index) => <span key={index} className="grid h-7 w-7 place-items-center rounded-full border-2 border-[#1b2828] text-[9px] font-bold text-slate-900" style={{ background: color }}>{['AS', 'MP', 'RK', '+'][index]}</span>)}</div><span><strong className="text-white">12k+</strong> people sharing better choices</span></div>
+            </div>
+            <div className="p-4 sm:p-6 lg:p-7"><div className="landing-hero-art relative h-full overflow-hidden rounded-[26px]" style={{ backgroundImage: "linear-gradient(180deg, rgba(7,14,20,.04), rgba(7,14,20,.78)), url('/ratespace-storefront.png')" }}><div className="absolute inset-x-5 top-5 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[.2em] text-white/65"><span>Community feature</span><span className="rounded-full bg-black/25 px-2.5 py-1 backdrop-blur-sm">01 / 04</span></div><div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4"><div><p className="text-xs text-amber-200">★★★★★ · 4.8 verified</p><h2 className="display mt-1 text-2xl font-medium sm:text-3xl">Urban Brew Cafe</h2><p className="mt-1 text-xs text-white/65">Bandra West, Mumbai</p></div><Link to="/app/discover" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-slate-950 transition hover:bg-violet-100"><ArrowUpRight size={18} /></Link></div></div></div>
+          </section>
+          <section id="featured" className="mt-5 rounded-[28px] glass p-5 sm:p-6">
+            <div className="mb-5 flex items-end justify-between gap-4"><div><p className="text-xs uppercase tracking-[.2em] text-white/40">Community picks</p><h2 className="display mt-2 text-2xl font-medium tracking-[-.04em] sm:text-3xl">You might like</h2></div><Link to="/app/discover" className="text-xs text-violet-200 transition hover:text-white">See all <ArrowRight size={12} className="inline" /></Link></div>
+            <div className="scrollbar-hide flex gap-4 overflow-x-auto pb-1">{stores.slice(0, 4).map((store, index) => <StoreCard key={store.id} store={store} featured index={index} />)}</div>
+          </section>
+          <section id="how" className="mt-5 grid gap-4 sm:grid-cols-3">{[['01', 'Real voices', 'Honest feedback from people like you.'], ['02', 'Local gems', 'Find the places worth your time.'], ['03', 'Better choices', 'Make every decision count.']].map(([number, title, copy]) => <div key={number} className="rounded-[24px] glass p-5"><span className="text-xs text-white/35">{number}</span><h3 className="mt-8 font-semibold">{title}</h3><p className="mt-2 text-xs leading-5 text-white/45">{copy}</p></div>)}</section>
+        </main>
+      </div>
+      <footer id="stories" className="flex flex-col gap-3 border-t border-white/10 px-2 py-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between"><Logo /><span>© 2024 RateSpace · Built for better choices.</span></footer>
+    </div>
+  </div>
+}
+
+function LegacyLanding() {
+  const [mobileOpen, setMobileOpen] = useState(false)
   return <div className="relative min-h-screen overflow-hidden bg-[#09090d] text-white"><Ambient/><header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8"><Logo/><nav className="hidden items-center gap-8 text-sm text-white/50 md:flex"><a href="#how" className="transition hover:text-white">How it works</a><a href="#stores" className="transition hover:text-white">Featured stores</a><a href="#stories" className="transition hover:text-white">Stories</a></nav><div className="flex items-center gap-2"><div className="hidden items-center gap-2 md:flex"><Button variant="ghost" to="/login">Log in</Button><Button to="/signup">Join RateSpace <ArrowUpRight size={15}/></Button></div><button className="grid h-10 w-10 place-items-center rounded-xl glass-soft md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X size={18}/> : <Menu size={18}/>}</button></div></header>{mobileOpen && <div className="relative z-20 mx-5 rounded-2xl glass p-4 md:hidden"><a href="#how" className="block border-b border-white/10 px-2 py-3 text-sm text-white/70">How it works</a><a href="#stores" className="block border-b border-white/10 px-2 py-3 text-sm text-white/70">Featured stores</a><Link to="/login" className="block px-2 py-3 text-sm text-white/70">Log in</Link></div>}
     <main className="relative z-10 mx-auto max-w-7xl px-5 pb-20 pt-12 lg:px-8 lg:pt-20"><div className="grid items-center gap-16 lg:grid-cols-[.9fr_1.1fr]"><motion.div variants={stagger} initial="initial" animate="animate" className="max-w-xl"><motion.div variants={fadeUp} className="mb-7 inline-flex items-center gap-2 rounded-full border border-violet-300/15 bg-violet-300/8 px-3 py-1.5 text-xs font-medium text-violet-200"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_#86efac]"/> A better way to choose</motion.div><motion.h1 variants={fadeUp} className="display text-5xl font-semibold leading-[1.05] tracking-[-.05em] sm:text-6xl lg:text-[76px]">Every store has<br/><span className="gradient-text">a story.</span><br/><span className="text-white/35">Rate yours.</span></motion.h1><motion.p variants={fadeUp} className="mt-7 max-w-md text-base leading-7 text-white/50">Discover great stores, share your experiences, and help others make better choices.</motion.p><motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3"><Button to="/app/discover">Explore stores <ArrowRight size={16}/></Button><Button variant="secondary" to="/signup">Create account</Button></motion.div><motion.div variants={fadeUp} className="mt-10 flex items-center gap-3 text-sm text-white/40"><div className="flex -space-x-2">{['#f0abfc','#93c5fd','#fcd34d','#86efac'].map((c,i) => <span key={i} className="grid h-7 w-7 place-items-center rounded-full border-2 border-[#0c0b11] text-[9px] font-bold text-slate-900" style={{background:c}}>{['AS','MP','RK','+'][i]}</span>)}</div><span><strong className="text-white">12k+</strong> people sharing better choices</span></motion.div></motion.div><HeroComposition/></div>
       <div className="mt-24 grid gap-4 border-t border-white/10 pt-8 sm:grid-cols-3"><div className="text-sm text-white/40"><span className="mb-3 block text-white/20">01</span><strong className="block text-base text-white">Real voices</strong>Honest feedback from people like you.</div><div className="text-sm text-white/40"><span className="mb-3 block text-white/20">02</span><strong className="block text-base text-white">Local gems</strong>Find the places worth your time.</div><div className="text-sm text-white/40"><span className="mb-3 block text-white/20">03</span><strong className="block text-base text-white">Better choices</strong>Make every decision count.</div></div>
