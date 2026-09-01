@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root { color: #f5f3ff; background: #09090d; font-family: 'DM Sans', sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: #09090d; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.display { font-family: 'Space Grotesk', sans-serif; }
+.noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E"); }
+.glass { background: rgba(23, 22, 31, .72); border: 1px solid rgba(255,255,255,.10); box-shadow: 0 20px 60px rgba(0,0,0,.23), inset 0 1px 0 rgba(255,255,255,.04); backdrop-filter: blur(22px); }
+.glass-soft { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(18px); }
+.gradient-text { background: linear-gradient(110deg,#fff 15%,#d0b6ff 52%,#8ce8ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { scrollbar-width: none; }
+@keyframes drift { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(18px,-14px,0) scale(1.04); } }
+@keyframes drift-reverse { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(-15px,12px,0); } }
+.blob { animation: drift 13s ease-in-out infinite; }
+.blob-reverse { animation: drift-reverse 15s ease-in-out infinite; }
+.hero-grid { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+.card-hover { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.card-hover:hover { transform: translateY(-5px); border-color: rgba(197, 166, 255, .34); box-shadow: 0 24px 55px rgba(0,0,0,.3), 0 0 35px rgba(132, 100, 255, .08); }
+/* Signup names follow the challenge's 20–60 character validation rule. */
+input[placeholder="Your full name"] + p { font-size: 0; }
+input[placeholder="Your full name"] + p::after { content: "20–60 characters"; font-size: 11px; }
