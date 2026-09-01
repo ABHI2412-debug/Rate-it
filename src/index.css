@@ -84,3 +84,20 @@ main > div > section { min-height: 0; }
 /* Signup names follow the challenge's 20–60 character validation rule. */
 input[placeholder="Your full name"] + p { font-size: 0; }
 input[placeholder="Your full name"] + p::after { content: "20–60 characters"; font-size: 11px; }
+.loading-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: rgba(4, 10, 16, .34); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.loader { --shadow: rgba(39, 94, 254, .28); width: 150px; height: 118px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: rgba(232, 245, 248, .72); }
+.loader > div { width: 92px; height: 68px; position: relative; transform: skewY(-6deg) rotate(-6deg); filter: drop-shadow(0 14px 10px var(--shadow)); }
+.loader > div::before, .loader > div::after { content: ''; position: absolute; bottom: -6px; width: 70px; height: 9px; border-radius: 50%; background: rgba(39, 94, 254, .24); filter: blur(4px); }
+.loader > div::before { left: 4px; }
+.loader > div::after { right: 4px; }
+.loader ul { position: relative; z-index: 1; display: flex; gap: 3px; width: 100%; height: 100%; margin: 0; padding: 0; list-style: none; }
+.loader li { width: 15px; height: 68px; color: #a9d9f8; transform: translateY(0); animation: loader-page 1.35s ease-in-out infinite; }
+.loader li:nth-child(2) { animation-delay: .08s; }
+.loader li:nth-child(3) { animation-delay: .16s; }
+.loader li:nth-child(4) { animation-delay: .24s; }
+.loader li:nth-child(5) { animation-delay: .32s; }
+.loader li:nth-child(6) { animation-delay: .4s; }
+.loader svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.loader span { margin-top: 13px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(240, 245, 246, .76); }
+@keyframes loader-page { 0%, 100% { transform: translateY(0); opacity: .48; } 50% { transform: translateY(-7px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .loader li { animation: none; } }

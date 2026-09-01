@@ -8,6 +8,7 @@ import {
   UserRound, Users, X, Zap,
 } from 'lucide-react'
 import AuthScreen from './components/AuthScreen'
+import LoadingOverlay from './components/LoadingOverlay'
 import { AuthProvider, useAuth } from './auth/AuthContext'
 import { ProtectedRoute, RoleRoute, UnauthorizedPage } from './auth/RouteGuards'
 import ConnectedSettingsPage from './components/ConnectedSettingsPage'
@@ -226,9 +227,26 @@ function AuthenticatedDashboard() {
   return <div className="relative"><DashboardLayout/><button onClick={logout} className="fixed bottom-7 right-7 z-50 rounded-xl border border-white/10 bg-[#17151f]/90 px-4 py-2.5 text-xs font-semibold text-white/60 shadow-xl backdrop-blur-xl transition hover:bg-rose-400/15 hover:text-rose-100"><LogOut size={14} className="mr-2 inline"/>Log out</button><span className="sr-only">Signed in as {user?.email}</span></div>
 }
 
+function RouteLoadingOverlay() {
+  const location = useLocation()
+  const firstRender = useRef(true)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    setLoading(true)
+    const timer = window.setTimeout(() => setLoading(false), 650)
+    return () => window.clearTimeout(timer)
+  }, [location.key])
+
+  return loading ? <LoadingOverlay /> : null
+}
 function RoleDashboard({ role }: { role: 'ADMIN' | 'STORE_OWNER' }) {
   if (role === 'ADMIN') return <AdminWorkspace />
   return <OwnerWorkspace />
 }
 
-export default function App() { return <AuthProvider><Routes><Route path="/" element={<Landing/>}/><Route path="/login" element={<AuthScreen mode="login"/>}/><Route path="/signup" element={<AuthScreen mode="signup"/>}/><Route path="/403" element={<UnauthorizedPage/>}/><Route path="/dashboard/*" element={<RoleRoute roles={['USER']}><AuthenticatedDashboard/></RoleRoute>}/><Route path="/app/*" element={<RoleRoute roles={['USER']}><AuthenticatedDashboard/></RoleRoute>}/><Route path="/admin/*" element={<RoleRoute roles={['ADMIN']}><RoleDashboard role="ADMIN"/></RoleRoute>}/><Route path="/owner/*" element={<RoleRoute roles={['STORE_OWNER']}><RoleDashboard role="STORE_OWNER"/></RoleRoute>}/><Route path="*" element={<Landing/>}/></Routes></AuthProvider> }
+export default function App() { return <AuthProvider><Routes><Route path="/" element={<Landing/>}/><Route path="/login" element={<AuthScreen mode="login"/>}/><Route path="/signup" element={<AuthScreen mode="signup"/>}/><Route path="/403" element={<UnauthorizedPage/>}/><Route path="/dashboard/*" element={<RoleRoute roles={['USER']}><AuthenticatedDashboard/></RoleRoute>}/><Route path="/app/*" element={<RoleRoute roles={['USER']}><AuthenticatedDashboard/></RoleRoute>}/><Route path="/admin/*" element={<RoleRoute roles={['ADMIN']}><RoleDashboard role="ADMIN"/></RoleRoute>}/><Route path="/owner/*" element={<RoleRoute roles={['STORE_OWNER']}><RoleDashboard role="STORE_OWNER"/></RoleRoute>}/><Route path="*" element={<Landing/>}/></Routes><RouteLoadingOverlay/></AuthProvider> }
