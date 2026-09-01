@@ -110,7 +110,9 @@ function Landing() {
           <section id="how" className="mt-5 grid gap-4 sm:grid-cols-3">{[['01', 'Real voices', 'Honest feedback from people like you.'], ['02', 'Local gems', 'Find the places worth your time.'], ['03', 'Better choices', 'Make every decision count.']].map(([number, title, copy]) => <div key={number} className="rounded-[24px] glass p-5"><span className="text-xs text-white/35">{number}</span><h3 className="mt-8 font-semibold">{title}</h3><p className="mt-2 text-xs leading-5 text-white/45">{copy}</p></div>)}</section>
         </main>
       </div>
-      <footer id="stories" className="flex flex-col gap-3 border-t border-white/10 px-2 py-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between"><Logo /><span>© 2024 RateSpace · Built for better choices.</span></footer>
+      <Testimonials />
+      <FinalCta />
+      <footer className="flex flex-col gap-3 border-t border-white/10 px-2 py-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between"><Logo /><span>© 2024 RateSpace · Built for better choices.</span></footer>
     </div>
   </div>
 }

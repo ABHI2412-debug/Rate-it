@@ -33,6 +33,11 @@ section[class*="from-violet-500/25"] { background-image: linear-gradient(90deg, 
 .store-mini-art { height: 72px; border-radius: 13px; background-size: cover; background-position: center; }
 .landing-search { background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.15); }
 .landing-search:focus-within { border-color: rgba(255,255,255,.32); background: rgba(0,0,0,.28); }
+.landing-shell section[id="stories"] { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+.landing-shell section[id="stories"] > div:last-child { align-items: start; }
+.landing-shell section[id="stories"] > div:last-child > div { min-height: 0 !important; height: auto !important; }
+.landing-shell section[id="stories"] + section { padding-bottom: 3.5rem !important; }
+.landing-shell section[id="stories"] + section > div { padding: 2rem !important; }
 [class*="bg-[#0f0e15]"] { background: rgba(18, 31, 40, .72) !important; border-color: rgba(232,245,248,.18) !important; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
 [class*="bg-[#17151f]"] { background: rgba(19, 32, 40, .78) !important; }
 [class*="border-white/8"] { border-color: rgba(232,245,248,.15) !important; }
