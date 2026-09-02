@@ -105,3 +105,13 @@ input[placeholder="Your full name"] + p::after { content: "20–60 characters"; 
 .loader span { margin-top: 13px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(240, 245, 246, .76); }
 @keyframes loader-page { 0%, 100% { transform: translateY(0); opacity: .48; } 50% { transform: translateY(-7px); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .loader li { animation: none; } }
+@keyframes blink-green-border {
+  0%, 100% { border-color: rgba(74, 222, 128, .25); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0), 0 4px 14px rgba(0,0,0,.12); }
+  50% { border-color: rgba(74, 222, 128, .85); box-shadow: 0 0 12px 3px rgba(74, 222, 128, .22), 0 4px 14px rgba(0,0,0,.12); }
+}
+.login-blink {
+  border: 2px solid rgba(74, 222, 128, .25);
+  border-radius: 14px;
+  animation: blink-green-border 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .login-blink { animation: none; border-color: rgba(74, 222, 128, .7); } }

@@ -80,7 +80,7 @@ function Landing() {
         </nav>
         <div className="hidden items-center gap-2 sm:flex">
           <ThemeToggle lightTheme={lightTheme} onToggle={() => setLightTheme((current) => !current)} />
-          <Button to="/login">Join RateSpace <ArrowUpRight size={15} /></Button>
+          <Button to="/login" className="login-blink">Join RateSpace <ArrowUpRight size={15} /></Button>
         </div>
         <button aria-label="Open menu" className="grid h-10 w-10 place-items-center rounded-xl glass-soft md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X size={18} /> : <Menu size={18} />}</button>
       </header>
