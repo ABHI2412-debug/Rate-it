@@ -16,7 +16,7 @@ const ownerData = [['owner@ratespace.demo', 'RateSpace Demo Store Owner Account'
 async function main() {
   const [adminPassword, userPassword, ownerPassword] = await Promise.all(Object.values(demoPasswords).map((value) => bcrypt.hash(value, 12)))
   const admin = await prisma.user.upsert({ where: { email: 'admin@ratespace.demo' }, update: { name: 'RateSpace Platform Administrator', password: adminPassword, role: 'ADMIN', address: 'RateSpace HQ, Mumbai' }, create: { name: 'RateSpace Platform Administrator', email: 'admin@ratespace.demo', password: adminPassword, role: 'ADMIN', address: 'RateSpace HQ, Mumbai' } })
-  const testUser = await prisma.user.upsert({ where: { email: 'user@ratespace.demo' }, update: { name: 'Neelam RateSpace Community User', password: userPassword, role: 'USER', address: 'Mumbai, Maharashtra' }, create: { name: 'Neelam RateSpace Community User', email: 'user@ratespace.demo', password: userPassword, role: 'USER', address: 'Mumbai, Maharashtra' } })
+  const testUser = await prisma.user.upsert({ where: { email: 'user@ratespace.demo' }, update: { name: 'Abhi\'s Rate Space Community', password: userPassword, role: 'USER', address: 'Mumbai, Maharashtra' }, create: { name: 'Abhi\'s Rate Space Community', email: 'user@ratespace.demo', password: userPassword, role: 'USER', address: 'Mumbai, Maharashtra' } })
   const raters = [testUser]
   const additionalRaters = [
     ['rater2@ratespace.demo', 'Priya Community Rating Member', 'Andheri East, Mumbai'],

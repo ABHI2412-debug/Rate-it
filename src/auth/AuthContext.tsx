@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!token) { setIsLoading(false); return }
       try {
         const response = await authService.me()
-        setUser(response.user)
+        setUser({ ...response.user, name: response.user.email === 'user@ratespace.demo' ? "Abhi's Rate Space Community" : response.user.name })
       } catch (error) {
         if (error instanceof ApiError && error.status === 401) { tokenStorage.clear(); setToken(null) }
       } finally { setIsLoading(false) }
@@ -51,8 +51,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const response = await authService.login(input)
       tokenStorage.set(response.token)
       setToken(response.token)
-      setUser(response.user)
-      return response.user
+      const user = { ...response.user, name: response.user.email === 'user@ratespace.demo' ? "Abhi's Rate Space Community" : response.user.name }
+      setUser(user)
+      return user
     },
     logout: () => { tokenStorage.clear(); setToken(null); setUser(null) },
   }), [user, token, isLoading])
