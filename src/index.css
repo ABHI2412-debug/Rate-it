@@ -115,3 +115,23 @@ input[placeholder="Your full name"] + p::after { content: "20–60 characters"; 
   animation: blink-green-border 1.6s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) { .login-blink { animation: none; border-color: rgba(74, 222, 128, .7); } }
+
+@keyframes input-white-pulse {
+  0%, 100% {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.7), inset 0 0 8px rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.18);
+  }
+  50% {
+    border-color: #ffffff;
+    box-shadow: 0 0 25px 6px rgba(255, 255, 255, 0.95), inset 0 0 14px rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.28);
+  }
+}
+.input-highlight-blink {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+  animation: input-white-pulse 0.7s ease-in-out infinite !important;
+}
+
